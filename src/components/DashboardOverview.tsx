@@ -95,149 +95,103 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
 
   return (
     <div className="space-y-6">
-      {/* Welcome Banner: Nuba Studio Signature Style */}
-      <div className="bg-gradient-to-r from-[#063f29] via-[#0D8A5B] to-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden border border-emerald-500/20">
+      {/* Welcome Banner: Clean Signature Style */}
+      <div className="bg-gradient-to-r from-[#063f29] via-[#0D8A5B] to-slate-900 rounded-2xl p-5 sm:p-6 text-white shadow-md relative overflow-hidden border border-emerald-500/20">
         <div className="absolute right-0 top-0 bottom-0 w-1/2 opacity-15 bg-[radial-gradient(circle_at_top_right,_#F59E0B,_transparent_70%)] pointer-events-none" />
-
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="space-y-3 max-w-xl">
-            {/* Integrated Logo & Database Badges */}
-            <div className="flex flex-wrap items-center gap-2">
-              <div className="inline-flex items-center gap-3 bg-white/95 rounded-2xl p-2 px-3.5 shadow-lg border border-white/30 backdrop-blur-md">
-                <NubaLogo size="sm" />
-                <div className="h-6 w-[1.5px] bg-slate-200" />
-                <div className="flex items-center gap-2">
-                  <div className="w-5 h-5 rounded-md bg-[#3ECF8E]/20 text-[#0D8A5B] flex items-center justify-center font-bold">
-                    <Database className="w-3.5 h-3.5 text-[#0D8A5B]" />
-                  </div>
-                  <div className="flex flex-col text-left">
-                    <span className="text-[11px] font-black text-slate-800 leading-tight">Supabase PostgreSQL</span>
-                    <span className="text-[9px] font-bold text-emerald-700 leading-tight flex items-center gap-1">
-                      <span className={`w-1.5 h-1.5 rounded-full ${supabaseConfig.isConnected ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500'}`} />
-                      {supabaseConfig.isConnected ? 'Cloud Real-Time' : 'Siap Dihubungkan'}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-white flex items-center gap-2 flex-wrap">
-              <span>Kelola Booking, Kasir &amp; Inventaris</span>
-            </h1>
-            <p className="text-emerald-100 text-xs sm:text-sm leading-relaxed">
-              Semua data disimpan permanen di <b>Supabase Cloud PostgreSQL</b> secara real-time. Saat halaman di-refresh, riwayat transaksi, jadwal booking dan inventaris aman dan tidak akan hilang!
-            </p>
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
-            <button
-              type="button"
-              onClick={onOpenSupabaseModal}
-              className="px-4 py-2.5 rounded-xl bg-[#3ECF8E] hover:bg-[#34b27b] text-slate-950 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
-            >
-              <Database className="w-4 h-4 text-slate-950" />
-              <span>{supabaseConfig.isConnected ? 'Kelola Supabase' : 'Hubungkan Supabase'}</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={onOpenAppsScriptGuide}
-              className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm border border-emerald-400/30 flex items-center justify-center gap-2 transition-all cursor-pointer backdrop-blur-xs"
-            >
-              <span>Google Sheets &amp; Apps Script</span>
-            </button>
-          </div>
+        <div className="relative z-10">
+          <h1 className="text-xl sm:text-2xl font-black tracking-tight text-white">
+            Kelola Booking, Kasir &amp; Inventaris
+          </h1>
         </div>
       </div>
 
-      {/* Main KPI Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* Main KPI Grid - 1 Horizontal Row Side-by-Side Without Scroll */}
+      <div className="grid grid-cols-4 gap-1.5 sm:gap-3">
         {/* KPI 1: Saldo Kas */}
         <div
           onClick={() => onNavigateTab('cashier')}
-          className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs hover:border-[#0D8A5B] hover:shadow-md transition-all cursor-pointer group"
+          className="bg-white p-2 sm:p-3.5 rounded-xl border border-slate-200 shadow-xs hover:border-[#0D8A5B] hover:shadow-sm transition-all cursor-pointer group flex flex-col justify-between"
         >
-          <div className="flex items-center justify-between text-slate-500 mb-2">
-            <span className="text-xs font-semibold uppercase tracking-wider">Saldo Kas Bersih</span>
-            <div className="p-2 rounded-xl bg-emerald-50 text-[#0D8A5B] group-hover:bg-emerald-100 transition-colors">
-              <Wallet className="w-5 h-5" />
+          <div className="flex items-center justify-between text-slate-500 mb-1">
+            <span className="text-[9px] sm:text-[11px] font-bold uppercase tracking-tight truncate">Saldo Kas</span>
+            <div className="p-1 rounded-md bg-emerald-50 text-[#0D8A5B] group-hover:bg-emerald-100 transition-colors shrink-0">
+              <Wallet className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </div>
           </div>
-          <div className="text-2xl font-black text-slate-900">
+          <div className="text-xs sm:text-lg font-black text-slate-900 truncate">
             Rp {currentBalance.toLocaleString('id-ID')}
           </div>
-          <div className="flex items-center justify-between text-xs text-slate-500 mt-2">
-            <span>Pemasukan: Rp {totalIncome.toLocaleString('id-ID')}</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#0D8A5B] group-hover:translate-x-1 transition-transform" />
+          <div className="flex items-center justify-between text-[9px] sm:text-[11px] text-slate-500 mt-1 pt-1 border-t border-slate-100">
+            <span className="truncate">Masuk: Rp {totalIncome.toLocaleString('id-ID')}</span>
+            <ArrowRight className="w-3 h-3 text-[#0D8A5B] shrink-0 group-hover:translate-x-0.5 transition-transform hidden sm:inline" />
           </div>
         </div>
 
         {/* KPI 2: Booking Hari Ini */}
         <div
           onClick={() => onNavigateTab('bookings')}
-          className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs hover:border-[#F59E0B] hover:shadow-md transition-all cursor-pointer group"
+          className="bg-white p-2 sm:p-3.5 rounded-xl border border-slate-200 shadow-xs hover:border-[#F59E0B] hover:shadow-sm transition-all cursor-pointer group flex flex-col justify-between"
         >
-          <div className="flex items-center justify-between text-slate-500 mb-2">
-            <span className="text-xs font-semibold uppercase tracking-wider">Booking Hari Ini</span>
-            <div className="p-2 rounded-xl bg-amber-50 text-[#F59E0B] group-hover:bg-amber-100 transition-colors">
-              <Calendar className="w-5 h-5" />
+          <div className="flex items-center justify-between text-slate-500 mb-1">
+            <span className="text-[9px] sm:text-[11px] font-bold uppercase tracking-tight truncate">Booking</span>
+            <div className="p-1 rounded-md bg-amber-50 text-[#F59E0B] group-hover:bg-amber-100 transition-colors shrink-0">
+              <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </div>
           </div>
-          <div className="text-2xl font-black text-[#0D8A5B]">
+          <div className="text-xs sm:text-lg font-black text-[#0D8A5B] truncate">
             {todayBookings.length} Sesi
           </div>
-          <div className="flex items-center justify-between text-xs text-slate-500 mt-2">
-            <span>Total booking: {bookings.length} klien</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#F59E0B] group-hover:translate-x-1 transition-transform" />
+          <div className="flex items-center justify-between text-[9px] sm:text-[11px] text-slate-500 mt-1 pt-1 border-t border-slate-100">
+            <span className="truncate">Tot: {bookings.length}</span>
+            <ArrowRight className="w-3 h-3 text-[#F59E0B] shrink-0 group-hover:translate-x-0.5 transition-transform hidden sm:inline" />
           </div>
         </div>
 
         {/* KPI 3: Total Nilai Aset */}
         <div
           onClick={() => onNavigateTab('inventory')}
-          className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs hover:border-[#0D8A5B] hover:shadow-md transition-all cursor-pointer group"
+          className="bg-white p-2 sm:p-3.5 rounded-xl border border-slate-200 shadow-xs hover:border-[#0D8A5B] hover:shadow-sm transition-all cursor-pointer group flex flex-col justify-between"
         >
-          <div className="flex items-center justify-between text-slate-500 mb-2">
-            <span className="text-xs font-semibold uppercase tracking-wider">Aset Inventaris</span>
-            <div className="p-2 rounded-xl bg-emerald-50 text-[#0D8A5B] group-hover:bg-emerald-100 transition-colors">
-              <Package className="w-5 h-5" />
+          <div className="flex items-center justify-between text-slate-500 mb-1">
+            <span className="text-[9px] sm:text-[11px] font-bold uppercase tracking-tight truncate">Inventaris</span>
+            <div className="p-1 rounded-md bg-emerald-50 text-[#0D8A5B] group-hover:bg-emerald-100 transition-colors shrink-0">
+              <Package className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </div>
           </div>
-          <div className="text-2xl font-black text-slate-900 truncate">
+          <div className="text-xs sm:text-lg font-black text-slate-900 truncate">
             Rp {totalValuation.toLocaleString('id-ID')}
           </div>
-          <div className="flex items-center justify-between text-xs text-slate-500 mt-2">
-            <span>{inventory.length} item terdata</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#0D8A5B] group-hover:translate-x-1 transition-transform" />
+          <div className="flex items-center justify-between text-[9px] sm:text-[11px] text-slate-500 mt-1 pt-1 border-t border-slate-100">
+            <span className="truncate">{inventory.length} item</span>
+            <ArrowRight className="w-3 h-3 text-[#0D8A5B] shrink-0 group-hover:translate-x-0.5 transition-transform hidden sm:inline" />
           </div>
         </div>
 
         {/* KPI 4: Status Sinkronisasi Real-Time */}
-        <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col justify-between">
-          <div className="flex items-center justify-between text-slate-500 mb-2">
-            <span className="text-xs font-semibold uppercase tracking-wider">Status Database</span>
-            <div className="p-2 rounded-xl bg-amber-50 text-[#F59E0B]">
-              <FileSpreadsheet className="w-5 h-5" />
+        <div className="bg-white p-2 sm:p-3.5 rounded-xl border border-slate-200 shadow-xs flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-500 mb-1">
+            <span className="text-[9px] sm:text-[11px] font-bold uppercase tracking-tight truncate">Database</span>
+            <div className="p-1 rounded-md bg-amber-50 text-[#F59E0B] shrink-0">
+              <Database className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </div>
           </div>
           <div>
-            <div className="flex items-center gap-1.5 text-[#0D8A5B] font-bold text-sm">
-              <CheckCircle2 className="w-4 h-4" />
-              <span>Real-Time Sheets</span>
+            <div className="flex items-center gap-1 text-[#0D8A5B] font-bold text-[10px] sm:text-xs truncate">
+              <CheckCircle2 className="w-3 h-3 shrink-0" />
+              <span className="truncate">Supabase</span>
             </div>
-            <p className="text-[11px] text-slate-500 mt-1">
-              Tab: Booking, Kasir, Inventaris
+            <p className="text-[8px] sm:text-[10px] text-slate-500 truncate mt-0.5">
+              {supabaseConfig.isConnected ? 'Aktif' : 'Lokal'}
             </p>
           </div>
-          <div className="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between">
+          <div className="mt-1 pt-1 border-t border-slate-100 flex items-center justify-between">
             <button
               type="button"
-              onClick={onManualSync}
-              disabled={syncState.status === 'syncing' || !sheetsConfig.spreadsheetId}
-              className="text-xs font-semibold text-[#0D8A5B] hover:text-[#09734a] flex items-center gap-1 cursor-pointer disabled:opacity-40"
+              onClick={onOpenSupabaseModal}
+              className="text-[9px] sm:text-[11px] font-semibold text-[#0D8A5B] hover:text-[#09734a] flex items-center gap-0.5 cursor-pointer truncate"
             >
-              <RefreshCw className={`w-3 h-3 ${syncState.status === 'syncing' ? 'animate-spin' : ''}`} />
-              <span>{syncState.status === 'syncing' ? 'Menyinkronkan...' : 'Sinkronkan Sekarang'}</span>
+              <RefreshCw className="w-2.5 h-2.5 shrink-0" />
+              <span className="truncate">Kelola</span>
             </button>
           </div>
         </div>

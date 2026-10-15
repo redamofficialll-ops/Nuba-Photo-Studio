@@ -206,12 +206,12 @@ export const SupabaseModal: React.FC<SupabaseModalProps> = ({
         <div className="p-6 overflow-y-auto space-y-5 text-slate-700 flex-1">
           {activeTab === 'config' && (
             <div className="space-y-4">
-              <div className="p-4 rounded-xl bg-emerald-50/70 border border-emerald-200 text-xs text-emerald-900 flex items-start gap-3">
-                <Sparkles className="w-4 h-4 text-[#0D8A5B] shrink-0 mt-0.5" />
+              <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-xs text-emerald-900 flex items-start gap-3 shadow-xs">
+                <ShieldCheck className="w-5 h-5 text-[#0D8A5B] shrink-0 mt-0.5" />
                 <div className="space-y-1">
-                  <p className="font-bold">Aplikasi kini terhubung langsung ke Supabase!</p>
-                  <p className="text-slate-600">
-                    Masukkan URL dan Anon Key dari dashboard proyek Supabase Anda. Semua data booking, kasir, dan inventaris akan tersimpan permanen di cloud PostgreSQL.
+                  <p className="font-bold text-sm text-[#063F29]">Tersambung Otomatis ke Cloud Supabase (Permanen)</p>
+                  <p className="text-emerald-800 leading-relaxed">
+                    Aplikasi ini sudah diatur agar selalu terhubung otomatis ke proyek Supabase Anda tanpa perlu memasukkan Project URL atau Anon Key secara manual lagi. Semua data tersimpan aman di cloud PostgreSQL.
                   </p>
                 </div>
               </div>

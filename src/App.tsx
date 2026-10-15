@@ -44,6 +44,7 @@ import { AppsScriptGuideModal } from './components/AppsScriptGuideModal';
 import { SupabaseModal } from './components/SupabaseModal';
 import { OfflineIndicator } from './components/OfflineIndicator';
 
+
 export default function App() {
   // Navigation State
   const [activeTab, setActiveTab] = useState<'dashboard' | 'bookings' | 'cashier' | 'inventory'>('dashboard');
@@ -384,8 +385,8 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100/70 text-slate-900 flex flex-col font-sans selection:bg-[#0D8A5B] selection:text-white">
-      {/* Top Navigation Bar */}
+    <div className="min-h-screen bg-slate-100/70 text-slate-900 flex flex-row font-sans selection:bg-[#0D8A5B] selection:text-white">
+      {/* Left Sidebar Navigation */}
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -399,84 +400,87 @@ export default function App() {
         sheetsConfig={sheetsConfig}
       />
 
-      {/* Main Content Viewport */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {activeTab === 'dashboard' && (
-          <DashboardOverview
-            bookings={bookings}
-            transactions={transactions}
-            inventory={inventory}
-            sheetsConfig={sheetsConfig}
-            syncState={syncState}
-            supabaseConfig={supabaseConfig}
-            onNavigateTab={setActiveTab}
-            onViewReceipt={(trx) => setReceiptTrx(trx)}
-            onManualSync={handleManualSync}
-            onOpenAppsScriptGuide={() => setIsAppsScriptOpen(true)}
-            onCreateNewSheet={handleCreateNewSpreadsheet}
-            onOpenSupabaseModal={() => setIsSupabaseOpen(true)}
-            isLoggedIn={!!user}
-          />
-        )}
+      {/* Right Content Area (Main + Footer) */}
+      <div className="flex-1 flex flex-col min-w-0">
+        {/* Main Content Viewport */}
+        <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          {activeTab === 'dashboard' && (
+            <DashboardOverview
+              bookings={bookings}
+              transactions={transactions}
+              inventory={inventory}
+              sheetsConfig={sheetsConfig}
+              syncState={syncState}
+              supabaseConfig={supabaseConfig}
+              onNavigateTab={setActiveTab}
+              onViewReceipt={(trx) => setReceiptTrx(trx)}
+              onManualSync={handleManualSync}
+              onOpenAppsScriptGuide={() => setIsAppsScriptOpen(true)}
+              onCreateNewSheet={handleCreateNewSpreadsheet}
+              onOpenSupabaseModal={() => setIsSupabaseOpen(true)}
+              isLoggedIn={!!user}
+            />
+          )}
 
-        {activeTab === 'bookings' && (
-          <BookingModule
-            bookings={bookings}
-            onAddBooking={handleAddBooking}
-            onUpdateBooking={handleUpdateBooking}
-            onDeleteBooking={handleDeleteBooking}
-            onRequestCashierPayment={handleRequestCashierPayment}
-          />
-        )}
+          {activeTab === 'bookings' && (
+            <BookingModule
+              bookings={bookings}
+              onAddBooking={handleAddBooking}
+              onUpdateBooking={handleUpdateBooking}
+              onDeleteBooking={handleDeleteBooking}
+              onRequestCashierPayment={handleRequestCashierPayment}
+            />
+          )}
 
-        {activeTab === 'cashier' && (
-          <CashierModule
-            transactions={transactions}
-            onAddTransaction={handleAddTransaction}
-            onUpdateTransaction={handleUpdateTransaction}
-            onDeleteTransaction={handleDeleteTransaction}
-            onViewReceipt={(trx) => setReceiptTrx(trx)}
-          />
-        )}
+          {activeTab === 'cashier' && (
+            <CashierModule
+              transactions={transactions}
+              onAddTransaction={handleAddTransaction}
+              onUpdateTransaction={handleUpdateTransaction}
+              onDeleteTransaction={handleDeleteTransaction}
+              onViewReceipt={(trx) => setReceiptTrx(trx)}
+            />
+          )}
 
-        {activeTab === 'inventory' && (
-          <InventoryModule
-            inventory={inventory}
-            onAddItem={handleAddItem}
-            onUpdateItem={handleUpdateItem}
-            onDeleteItem={handleDeleteItem}
-            onQuickAdjustQuantity={handleQuickAdjustQuantity}
-          />
-        )}
-      </main>
+          {activeTab === 'inventory' && (
+            <InventoryModule
+              inventory={inventory}
+              onAddItem={handleAddItem}
+              onUpdateItem={handleUpdateItem}
+              onDeleteItem={handleDeleteItem}
+              onQuickAdjustQuantity={handleQuickAdjustQuantity}
+            />
+          )}
+        </main>
 
-      {/* Footer */}
-      <footer className="mt-auto py-6 bg-white border-t border-slate-200 text-xs text-slate-500 text-center">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <span className="font-bold text-slate-800">
-              <span className="text-[#0D8A5B]">n</span>
-              <span className="text-[#F59E0B]">U</span>
-              <span className="text-[#0D8A5B]">BA</span> PHOTO STUDIO
-            </span>
-            <span>• Database Utama Supabase PostgreSQL Real-Time &amp; Drive Assets</span>
+        {/* Footer */}
+        <footer className="mt-auto py-6 bg-white border-t border-slate-200 text-xs text-slate-500 text-center">
+          <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <span className="font-bold text-slate-800">
+                <span className="text-[#0D8A5B]">n</span>
+                <span className="text-[#F59E0B]">U</span>
+                <span className="text-[#0D8A5B]">BA</span> PHOTO STUDIO
+              </span>
+              <span>• Database Utama Supabase PostgreSQL Real-Time &amp; Drive Assets</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setIsSupabaseOpen(true)}
+                className="text-[#0D8A5B] hover:text-[#09734a] font-semibold hover:underline cursor-pointer flex items-center gap-1"
+              >
+                <span>Pengaturan Supabase</span>
+              </button>
+              <button
+                onClick={() => setIsAppsScriptOpen(true)}
+                className="text-slate-600 hover:text-slate-900 font-semibold hover:underline cursor-pointer"
+              >
+                Google Apps Script
+              </button>
+            </div>
           </div>
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => setIsSupabaseOpen(true)}
-              className="text-[#0D8A5B] hover:text-[#09734a] font-semibold hover:underline cursor-pointer flex items-center gap-1"
-            >
-              <span>Pengaturan Supabase</span>
-            </button>
-            <button
-              onClick={() => setIsAppsScriptOpen(true)}
-              className="text-slate-600 hover:text-slate-900 font-semibold hover:underline cursor-pointer"
-            >
-              Google Apps Script
-            </button>
-          </div>
-        </div>
-      </footer>
+        </footer>
+      </div>
 
       {/* Destructive Action Confirmation Modal */}
       <ConfirmationModal

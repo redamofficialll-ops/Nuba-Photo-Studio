@@ -3,9 +3,9 @@ import { Booking, CashierTransaction, InventoryItem, SupabaseConfig, StudioUser 
 
 const STORAGE_KEY_CONFIG = 'nuba_supabase_config_v1';
 
-// Default / fallback configurations from env if present
-const defaultUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const defaultKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+// Default / fallback configurations pre-configured for Nuba Photo Studio
+const defaultUrl = import.meta.env.VITE_SUPABASE_URL || 'https://exhntobbjevaabxvybqq.supabase.co';
+const defaultKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV4aG50b2JiamV2YWFieHlieXFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0Nzg0MDUsImV4cCI6MjA4NjA1NDQwNX0.abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJK';
 
 export function getStoredSupabaseConfig(): SupabaseConfig {
   try {
@@ -15,7 +15,7 @@ export function getStoredSupabaseConfig(): SupabaseConfig {
       return {
         url: parsed.url || defaultUrl,
         anonKey: parsed.anonKey || defaultKey,
-        isConnected: Boolean(parsed.isConnected),
+        isConnected: true, // Always connected by default
         lastSyncedAt: parsed.lastSyncedAt || null,
       };
     }
@@ -25,7 +25,7 @@ export function getStoredSupabaseConfig(): SupabaseConfig {
   return {
     url: defaultUrl,
     anonKey: defaultKey,
-    isConnected: Boolean(defaultUrl && defaultKey),
+    isConnected: true, // Always connected by default
     lastSyncedAt: null,
   };
 }

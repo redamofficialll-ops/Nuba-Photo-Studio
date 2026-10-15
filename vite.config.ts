@@ -84,8 +84,11 @@ export default defineConfig(() => {
     ],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
+        '@': path.resolve('.'),
       },
+    },
+    build: {
+      chunkSizeWarningLimit: 1200,
     },
     server: {
       hmr: process.env.DISABLE_HMR !== 'true',
