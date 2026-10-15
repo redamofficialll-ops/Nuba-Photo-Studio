@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { SyncState, GoogleSheetsConfig, SupabaseConfig, StudioUser } from '../types';
 import { NubaLogo } from './NubaLogo';
+import { PWAInstallButton } from './PWAInstallButton';
 
 interface NavbarProps {
   activeTab: 'dashboard' | 'bookings' | 'cashier' | 'inventory';
@@ -53,6 +54,9 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Sync & Supabase Database Controls */}
           <div className="flex items-center gap-2 sm:gap-3">
+            {/* PWA Install Button for Android & iOS */}
+            <PWAInstallButton />
+
             {/* Supabase Connection Status Badge / Button */}
             {supabaseConfig.isConnected ? (
               <button

@@ -42,6 +42,7 @@ import { ConfirmationModal } from './components/ConfirmationModal';
 import { ReceiptModal } from './components/ReceiptModal';
 import { AppsScriptGuideModal } from './components/AppsScriptGuideModal';
 import { SupabaseModal } from './components/SupabaseModal';
+import { OfflineIndicator } from './components/OfflineIndicator';
 
 export default function App() {
   // Navigation State
@@ -524,6 +525,9 @@ export default function App() {
           saveSheetsConfig(updated);
         }}
       />
+
+      {/* Offline Status Indicator */}
+      <OfflineIndicator />
     </div>
   );
 }
