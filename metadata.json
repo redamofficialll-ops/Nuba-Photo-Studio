@@ -1,0 +1,6 @@
+{
+  "name": "Manajemen Booking, Kasir & Inventaris",
+  "description": "Sistem manajemen jadwal booking pelanggan, kasir pencatatan kas masuk dan keluar, serta inventaris dengan database Google Sheets real-time.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
