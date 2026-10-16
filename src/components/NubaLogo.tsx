@@ -237,136 +237,89 @@ export const NubaLogo: React.FC<NubaLogoProps> = ({
              ========================================================== */
           <div className="flex items-center h-full">
             <svg
-              viewBox="0 0 310 70"
+              viewBox="0 0 280 75"
               className="h-full w-auto max-w-[280px]"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               aria-label="Nuba Photo Studio Logo"
             >
               <defs>
-                {/* Emerald Gradient */}
-                <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#0D9E64" />
-                  <stop offset="100%" stopColor="#007545" />
+                <linearGradient id="nubaGreenSolid" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#008751" />
+                  <stop offset="100%" stopColor="#007042" />
                 </linearGradient>
-
-                {/* Golden Orange Gradient */}
-                <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#FBBF24" />
-                  <stop offset="100%" stopColor="#F97316" />
+                <linearGradient id="nubaOrangeSolid" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#FFB300" />
+                  <stop offset="100%" stopColor="#F99E1C" />
                 </linearGradient>
-
-                {/* Subtle Lens Shadow */}
-                <radialGradient id="lensReflect" cx="30%" cy="30%" r="70%">
-                  <stop offset="0%" stopColor="#ffffff" stopOpacity="0.45" />
-                  <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
-                </radialGradient>
               </defs>
 
-              {/* === 1. EMBLEM: Camera Shutter Aperture Icon (x: 4 to 58, y: 8 to 62) === */}
-              <g transform="translate(4, 8)">
-                {/* Outer Ring */}
-                <circle cx="27" cy="27" r="26" stroke="#008751" strokeWidth="2.5" fill="#F8FAFC" />
+              {/* Orange Wave Swoosh starting above 'n' curving smoothly into 'u' */}
+              <path
+                d="M 44 20 C 54 12, 72 16, 82 25 C 72 23, 58 26, 50 34 Z"
+                fill="url(#nubaOrangeSolid)"
+              />
 
-                {/* Aperture Blade 1 (Green) */}
-                <path
-                  d="M27 4 C36 4, 46 12, 48 22 L33 27 Z"
-                  fill="url(#emeraldGrad)"
-                />
-                {/* Aperture Blade 2 (Orange) */}
-                <path
-                  d="M48 22 C50 32, 46 42, 38 48 L27 34 Z"
-                  fill="url(#amberGrad)"
-                />
-                {/* Aperture Blade 3 (Green) */}
-                <path
-                  d="M38 48 C28 53, 17 50, 10 42 L22 29 Z"
-                  fill="url(#emeraldGrad)"
-                />
-                {/* Aperture Blade 4 (Orange) */}
-                <path
-                  d="M10 42 C4 34, 4 22, 10 13 L24 24 Z"
-                  fill="url(#amberGrad)"
-                />
-                {/* Aperture Blade 5 (Green) */}
-                <path
-                  d="M10 13 C15 6, 25 3, 33 6 L27 22 Z"
-                  fill="url(#emeraldGrad)"
-                />
-
-                {/* Inner Optical Lens Core */}
-                <circle cx="27" cy="27" r="9" fill="#063F29" />
-                <circle cx="27" cy="27" r="9" fill="url(#lensReflect)" />
-                <circle cx="25" cy="25" r="3" fill="#ffffff" fillOpacity="0.8" />
-              </g>
-
-              {/* === 2. WORDMARK: "nuba" Typography (x: 72, y: 40) === */}
-              {/* Letter 'n' */}
+              {/* Letter 'n' in green */}
               <text
-                x="72"
-                y="41"
-                fill="#008751"
+                x="20"
+                y="48"
+                fill="url(#nubaGreenSolid)"
                 style={{
-                  fontFamily: 'system-ui, -apple-system, Montserrat, Arial, sans-serif',
+                  fontFamily: 'Montserrat, Arial, sans-serif',
                   fontWeight: 900,
-                  fontSize: '38px',
-                  letterSpacing: '-0.02em',
+                  fontSize: '48px',
+                  letterSpacing: '-0.03em',
                 }}
               >
                 n
               </text>
 
-              {/* Letter 'u' (Vibrant Golden Orange) */}
+              {/* Letter 'u' in orange */}
               <text
-                x="98"
-                y="41"
-                fill="#F99E1C"
+                x="54"
+                y="48"
+                fill="url(#nubaOrangeSolid)"
                 style={{
-                  fontFamily: 'system-ui, -apple-system, Montserrat, Arial, sans-serif',
+                  fontFamily: 'Montserrat, Arial, sans-serif',
                   fontWeight: 900,
-                  fontSize: '38px',
-                  letterSpacing: '-0.02em',
+                  fontSize: '48px',
+                  letterSpacing: '-0.03em',
                 }}
               >
                 u
               </text>
 
-              {/* Letters 'ba' */}
+              {/* Letters 'BA' in green */}
               <text
-                x="125"
-                y="41"
-                fill="#008751"
+                x="90"
+                y="48"
+                fill="url(#nubaGreenSolid)"
                 style={{
-                  fontFamily: 'system-ui, -apple-system, Montserrat, Arial, sans-serif',
+                  fontFamily: 'Montserrat, Arial, sans-serif',
                   fontWeight: 900,
-                  fontSize: '38px',
-                  letterSpacing: '-0.02em',
+                  fontSize: '48px',
+                  letterSpacing: '-0.03em',
                 }}
               >
-                ba
+                BA
               </text>
 
-              {/* === 3. SUBTITLE: "PHOTO STUDIO" (x: 73, y: 58) === */}
+              {/* Subtitle: PHOTO STUDIO */}
               {showSubtitle && (
-                <g>
-                  {/* Decorative divider line under nuba */}
-                  <line x1="73" y1="46" x2="295" y2="46" stroke="#E2E8F0" strokeWidth="1" />
-                  <line x1="73" y1="46" x2="140" y2="46" stroke="#F99E1C" strokeWidth="2" strokeLinecap="round" />
-
-                  <text
-                    x="73"
-                    y="59"
-                    fill="#1E293B"
-                    style={{
-                      fontFamily: 'system-ui, -apple-system, Montserrat, Arial, sans-serif',
-                      fontWeight: 800,
-                      fontSize: '11px',
-                      letterSpacing: '0.42em',
-                    }}
-                  >
-                    PHOTO STUDIO
-                  </text>
-                </g>
+                <text
+                  x="22"
+                  y="65"
+                  fill="#111827"
+                  style={{
+                    fontFamily: 'Montserrat, Arial, sans-serif',
+                    fontWeight: 800,
+                    fontSize: '11px',
+                    letterSpacing: '0.48em',
+                  }}
+                >
+                  PHOTO STUDIO
+                </text>
               )}
             </svg>
           </div>
